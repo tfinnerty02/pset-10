@@ -1,11 +1,12 @@
-import java.util.LinkedHashMap;
+import java.io.FileReader;
+import java.util.HashMap;
 import com.google.gson.*;
 
 public class Dictionary {
 
 	Gson gson = new Gson();
-	LinkedHashMap<String, String> dictionary = new LinkedHashMap<String, String>();
-	dictionary = gson.fromJson();
+	HashMap<String, String> dictionary = new Gson().fromJson(new FileReader("words.json"), HashMap.class);
+
 	
 	// add word to dictionary
 	public void addWord(String word) {
