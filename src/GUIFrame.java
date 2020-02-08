@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.google.gson.*;
 
 public class GUIFrame {
 
@@ -71,7 +72,7 @@ public class GUIFrame {
 		addWordBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// new frame appears to add word to dictionary
+				// new field/frame? appears to add word to dictionary
 				
 			}
 		});
@@ -127,6 +128,9 @@ public class GUIFrame {
 		frmDictionary.getContentPane().add(wordList);
 		
 		wordInfoDisplay = new JTextField();
+		wordInfoDisplay.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		wordInfoDisplay.setText("No word selected.");
+		wordInfoDisplay.setHorizontalAlignment(JTextField.CENTER);
 		wordInfoDisplay.setEditable(false);
 		wordInfoDisplay.setBounds(251, 70, 429, 437);
 		frmDictionary.getContentPane().add(wordInfoDisplay);
