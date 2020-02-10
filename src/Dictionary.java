@@ -13,47 +13,26 @@ import org.json.simple.parser.ParseException;
 
 public class Dictionary {
 
-	/* * Java Method to read JSON From File */
-	public static String readJson(String file) {
-		JSONParser parser = new JSONParser();
-		
-		try {
-			
-			Object obj = parser.parse(new FileReader("words.json"));
-			JSONObject jsonObject = (JSONObject) obj;
-			String word = (String) jsonObject.get("word");
-			return word;
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
+
+
 	
-		HashMap<String, String> dictionary = new HashMap<String,String>();
 
 	// add word to dictionary
-	public void addWord(String word) {
-		dictionary.put(word, word);
-	}
-
 	// remove word from dictionary
-	public void removeWord(String word) {
-		dictionary.remove(word);
-	}
+	// search for word
+	// sort dictionary
 
 	// main method
 	public static void main(String[] args) {
-		System.out.println(readJson("words.json"));
-
+		// 2. JSON string to Java object
 		Gson gson = new Gson();
+		
+		String json = "{'word' : 'scatter'}";
+		String object = gson.fromJson(json, String.class);	
+		
+		System.out.println(object);
+		
+		
 
 	}
 }
