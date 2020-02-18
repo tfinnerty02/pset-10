@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import com.google.gson.*;
 import java.io.FileReader;
@@ -13,10 +14,6 @@ import org.json.simple.parser.ParseException;
 
 public class Dictionary {
 
-
-
-	
-
 	// add word to dictionary
 	// remove word from dictionary
 	// search for word
@@ -26,13 +23,12 @@ public class Dictionary {
 	public static void main(String[] args) {
 		// 2. JSON string to Java object
 		Gson gson = new Gson();
-		
-		String json = "{'word' : 'scatter'}";
-		String object = gson.fromJson(json, String.class);	
-		
-		System.out.println(object);
-		
-		
+				
+//		String[] wordsArr = gson.fromJson(new FileReader("words.json", String.class), String.class);
+//		ArrayList<String> words = new ArrayList<String>();
+
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("words.json"));
 
 	}
 }
