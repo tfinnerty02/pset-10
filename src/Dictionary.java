@@ -6,11 +6,14 @@ import com.google.gson.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 
 public class Dictionary {
 
@@ -20,15 +23,13 @@ public class Dictionary {
 	// sort dictionary
 
 	// main method
-	public static void main(String[] args) {
-		// 2. JSON string to Java object
-		Gson gson = new Gson();
-				
-//		String[] wordsArr = gson.fromJson(new FileReader("words.json", String.class), String.class);
-//		ArrayList<String> words = new ArrayList<String>();
+	public static void main(String[] args) throws IOException {
+		String jsonFileString = new String(Files.readAllBytes(Paths.get("words.json")));
+		System.out.println(jsonFileString);
 
-		JSONParser jsonParser = new JSONParser();
-		JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("words.json"));
+		Gson gson = new Gson();
+		Word[] userArray = gson.fromJson(jsonFileString, Word[].class);
+		System.out.println(userArray);
 
 	}
 }
