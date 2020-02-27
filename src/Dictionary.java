@@ -14,7 +14,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
 public class Dictionary {
 
 	// add word to dictionary
@@ -29,7 +28,7 @@ public class Dictionary {
 
 		Gson gson = new Gson();
 		Word[] userArray = gson.fromJson(jsonFileString, Word[].class);
-		System.out.println(userArray);
+//		System.out.println(userArray);
 
 	}
 }
