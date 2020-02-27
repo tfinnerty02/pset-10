@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
 import java.util.List;
 
 import com.google.gson.*;
@@ -73,6 +74,7 @@ public class GUIFrame {
 		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton addWordBtn = new JButton("Add Word");
+		addWordBtn.setFocusPainted(false);
 		addWordBtn.setBounds(6, 6, 117, 29);
 		addWordBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -92,6 +94,7 @@ public class GUIFrame {
 		JButton removeWordBtn = new JButton("Remove Word");
 		removeWordBtn.setBounds(122, 6, 117, 29);
 		removeWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		removeWordBtn.setFocusPainted(false);
 		frmDictionary.getContentPane().add(removeWordBtn);
 		
 		searchBox = new JTextField("Search...");
@@ -115,15 +118,31 @@ public class GUIFrame {
 		searchBox.setColumns(10);
 		
 		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
+		aToZRdoBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// sort A to Z
+
+			}
+		});
 		aToZRdoBtn.setBounds(6, 70, 141, 23);
 		aToZRdoBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		aToZRdoBtn.setSelected(true);
+		aToZRdoBtn.setFocusPainted(false);
 		buttonGroup.add(aToZRdoBtn);
 		frmDictionary.getContentPane().add(aToZRdoBtn);
 		
 		JRadioButton zToARdoBtn = new JRadioButton("Z to A");
+		zToARdoBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// sort Z to A
+
+			}
+		});
 		zToARdoBtn.setBounds(6, 95, 141, 23);
 		zToARdoBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		zToARdoBtn.setFocusPainted(false);
 		buttonGroup.add(zToARdoBtn);
 		frmDictionary.getContentPane().add(zToARdoBtn);
 		
@@ -154,7 +173,5 @@ public class GUIFrame {
 		lblNewLabel.setFont(new Font("Chalkboard", Font.BOLD, 47));
 		frmDictionary.getContentPane().add(lblNewLabel);
 		
-//		scrollPane.setBounds(6, 119, 233, 100);
-
 	}
 }
