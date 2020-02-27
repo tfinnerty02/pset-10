@@ -133,13 +133,12 @@ public class GUIFrame {
 		JList wordList = new JList(jsonArray.toArray());
 		wordList.setBounds(6, 119, 233, 388);
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
-		frmDictionary.getContentPane().add(wordList);
         
 		JScrollPane listScroller = new JScrollPane();
         listScroller.setViewportView(wordList);
-		listScroller.setBounds(6, 119, 233, 100);
+		listScroller.setBounds(6, 119, 233, 388);
         wordList.setLayoutOrientation(JList.VERTICAL);
-        frmDictionary.add(listScroller);
+        frmDictionary.getContentPane().add(listScroller);
 				
 		wordInfoDisplay = new JTextField();
 		wordInfoDisplay.setBounds(251, 70, 429, 437);
@@ -155,9 +154,7 @@ public class GUIFrame {
 		lblNewLabel.setFont(new Font("Chalkboard", Font.BOLD, 47));
 		frmDictionary.getContentPane().add(lblNewLabel);
 		
-//		ScrollPane scrollPane = new ScrollPane();
 //		scrollPane.setBounds(6, 119, 233, 100);
-//		frmDictionary.getContentPane().add(scrollPane);
 
 	}
 }
