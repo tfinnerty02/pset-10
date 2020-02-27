@@ -26,7 +26,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
 import com.google.gson.*;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import java.awt.ScrollPane;
 
 public class GUIFrame {
 
@@ -122,11 +127,20 @@ public class GUIFrame {
 		buttonGroup.add(zToARdoBtn);
 		frmDictionary.getContentPane().add(zToARdoBtn);
 		
-		JList wordList = new JList();
+		List<Word> jsonArray = GSONread.returnWords();
+		
+		@SuppressWarnings("unchecked")
+		JList wordList = new JList(jsonArray.toArray());
 		wordList.setBounds(6, 119, 233, 388);
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
 		frmDictionary.getContentPane().add(wordList);
-		
+        
+		JScrollPane listScroller = new JScrollPane();
+        listScroller.setViewportView(wordList);
+		listScroller.setBounds(6, 119, 233, 100);
+        wordList.setLayoutOrientation(JList.VERTICAL);
+        frmDictionary.add(listScroller);
+				
 		wordInfoDisplay = new JTextField();
 		wordInfoDisplay.setBounds(251, 70, 429, 437);
 		wordInfoDisplay.setFont(new Font("Chalkboard", Font.PLAIN, 13));
@@ -140,6 +154,10 @@ public class GUIFrame {
 		lblNewLabel.setBounds(260, 11, 332, 61);
 		lblNewLabel.setFont(new Font("Chalkboard", Font.BOLD, 47));
 		frmDictionary.getContentPane().add(lblNewLabel);
+		
+//		ScrollPane scrollPane = new ScrollPane();
+//		scrollPane.setBounds(6, 119, 233, 100);
+//		frmDictionary.getContentPane().add(scrollPane);
 
 	}
 }

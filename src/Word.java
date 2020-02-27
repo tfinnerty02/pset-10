@@ -7,7 +7,7 @@ public class Word {
 	private Definition[] definitions;
 	private List<String> synonyms;
 	private List<String> antonyms;
-
+	
 	public String getWord() {
 		return word;
 	}
