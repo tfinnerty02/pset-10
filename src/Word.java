@@ -7,17 +7,18 @@ public class Word {
 	public ArrayList<String> synonyms;
 	public ArrayList<String> antonyms;
 
-	public Word(String name, ArrayList<Definition> definitions, ArrayList<String> synonyms, ArrayList<String> antonyms) {
+	public Word(String name, ArrayList<Definition> definitions, ArrayList<String> synonyms,
+			ArrayList<String> antonyms) {
 		this.word = name;
 		this.definitions = definitions;
 		this.synonyms = synonyms;
 		this.antonyms = antonyms;
 	}
-	
+
 	public String getWord() {
 		return word;
 	}
-	
+
 	public ArrayList<Definition> getDefinitions() {
 		return definitions;
 	}
@@ -29,7 +30,7 @@ public class Word {
 	public ArrayList<String> getAntonyms() {
 		return antonyms;
 	}
-	
+
 	@Override
 	public String toString() {
 		return word;
