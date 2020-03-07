@@ -15,9 +15,4 @@ public class Definition {
 	public String getPartOfSpeech() {
 		return partOfSpeech;
 	}
-
-	@Override
-	public String toString() {
-		return "Definitions: " + definition + "/nPart of Speech: " + partOfSpeech;
-	}
 }
