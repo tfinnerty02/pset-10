@@ -95,7 +95,6 @@ public class GUIFrame {
 					}
 					wordList.setModel(filteredItems);
 				}
-
 			}
 		});
 		searchBox.setBounds(6, 34, 233, 38);
@@ -177,6 +176,7 @@ public class GUIFrame {
 		wordInfoDisplay.setText("No word selected.");
 		wordInfoDisplay.setHorizontalAlignment(JTextField.CENTER);
 		wordInfoDisplay.setEditable(false);
+		wordInfoDisplay.setFocusable(false);
 		frmDictionary.getContentPane().add(wordInfoDisplay);
 		wordInfoDisplay.setColumns(10);
 
