@@ -29,5 +29,10 @@ public class Word {
 	public ArrayList<String> getAntonyms() {
 		return antonyms;
 	}
+	
+	@Override
+	public String toString() {
+		return word;
+	}
 
 }

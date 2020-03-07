@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.gson.*;
@@ -30,7 +31,6 @@ public class GUIFrame {
 	JScrollPane listScroller;
 	@SuppressWarnings("rawtypes")
 	List jsonArray;
-	
 
 	/**
 	 * Launch the application.
@@ -64,33 +64,27 @@ public class GUIFrame {
 		frmDictionary.setBounds(100, 100, 686, 535);
 		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		// add word button
 		JButton addWordBtn = new JButton("Add Word");
 		addWordBtn.setFocusPainted(false);
 		addWordBtn.setBounds(6, 6, 117, 29);
-		addWordBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// new field/frame? appears to add word to dictionary
-
-			}
-		});
 		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		addWordBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		frmDictionary.getContentPane().setLayout(null);
 		frmDictionary.getContentPane().add(addWordBtn);
 
+		// remove word button
 		JButton removeWordBtn = new JButton("Remove Word");
 		removeWordBtn.setBounds(122, 6, 117, 29);
 		removeWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		removeWordBtn.setFocusPainted(false);
 		frmDictionary.getContentPane().add(removeWordBtn);
 
+		// search box
 		searchBox = new JTextField("Search...");
 		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
+		
+		// adds/removes placeholder when focus gained/lost
 		searchBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -109,10 +103,10 @@ public class GUIFrame {
 		frmDictionary.getContentPane().add(searchBox);
 		searchBox.setColumns(10);
 
+		// A to Z radio button
 		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
-		aToZRdoBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		aToZRdoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				// sort A to Z
 				jsonArray = GSONread.returnWords(true);
 				System.out.println(jsonArray);
@@ -125,14 +119,13 @@ public class GUIFrame {
 		buttonGroup.add(aToZRdoBtn);
 		frmDictionary.getContentPane().add(aToZRdoBtn);
 
+		// Z to A radio button
 		JRadioButton zToARdoBtn = new JRadioButton("Z to A");
-		zToARdoBtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		zToARdoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				// sort Z to A
 				jsonArray = GSONread.returnWords(false);
 				System.out.println(jsonArray);
-
 			}
 		});
 		zToARdoBtn.setBounds(6, 95, 141, 23);
@@ -142,6 +135,7 @@ public class GUIFrame {
 		frmDictionary.getContentPane().add(zToARdoBtn);
 
 		jsonArray = GSONread.returnWords(true);
+		System.out.println(jsonArray);
 
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JList wordList = new JList(jsonArray.toArray());
@@ -163,6 +157,7 @@ public class GUIFrame {
 		frmDictionary.getContentPane().add(wordInfoDisplay);
 		wordInfoDisplay.setColumns(10);
 
+		// label at the top of window
 		JLabel lblNewLabel = new JLabel("Dictionary");
 		lblNewLabel.setBounds(260, 11, 332, 61);
 		lblNewLabel.setFont(new Font("Chalkboard", Font.BOLD, 47));
