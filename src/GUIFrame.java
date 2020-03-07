@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -8,12 +9,16 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Vector;
+
 import com.google.gson.*;
 import javax.swing.JScrollPane;
 
@@ -23,7 +28,13 @@ public class GUIFrame {
 	private JTextField searchBox;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField wordInfoDisplay;
-	private List<Word> jsonArray;
+
+	@SuppressWarnings("rawtypes")
+	JList wordList;
+	JScrollPane listScroller;
+	@SuppressWarnings("rawtypes")
+	List jsonArray;
+	
 
 	/**
 	 * Launch the application.
@@ -32,7 +43,7 @@ public class GUIFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIFrame window = new GUIFrame();
+					GUIFrame window = new GUIFrame(true);
 					window.frmDictionary.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,14 +55,14 @@ public class GUIFrame {
 	/**
 	 * Create the application.
 	 */
-	public GUIFrame() {
-		initialize();
+	public GUIFrame(boolean firstRun) {
+		initialize(firstRun);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(boolean firstRun) {
 		frmDictionary = new JFrame();
 		frmDictionary.setTitle("Dictionary");
 		frmDictionary.setBounds(100, 100, 686, 535);
@@ -107,8 +118,8 @@ public class GUIFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// sort A to Z
-				jsonArray = GSONread.returnWords();
-				
+				jsonArray = GSONread.returnWords(true);
+				System.out.println(jsonArray);
 			}
 		});
 		aToZRdoBtn.setBounds(6, 70, 141, 23);
@@ -123,8 +134,9 @@ public class GUIFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// sort Z to A
-				jsonArray = GSONread.returnWords();
+				jsonArray = GSONread.returnWords(false);
 				System.out.println(jsonArray);
+
 			}
 		});
 		zToARdoBtn.setBounds(6, 95, 141, 23);
@@ -133,14 +145,14 @@ public class GUIFrame {
 		buttonGroup.add(zToARdoBtn);
 		frmDictionary.getContentPane().add(zToARdoBtn);
 
-		jsonArray = GSONread.returnWords();
+		jsonArray = GSONread.returnWords(true);
 
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JList wordList = new JList(jsonArray.toArray());
 		wordList.setBounds(6, 119, 233, 388);
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
 
-		JScrollPane listScroller = new JScrollPane();
+		listScroller = new JScrollPane();
 		listScroller.setViewportView(wordList);
 		listScroller.setBounds(6, 119, 233, 388);
 		wordList.setLayoutOrientation(JList.VERTICAL);

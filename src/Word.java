@@ -1,31 +1,26 @@
-import java.util.List;
+import java.util.ArrayList;
 
 public class Word {
 
-	private String word;
-	private Definition[] definitions;
-	private List<String> synonyms;
-	private List<String> antonyms;
+	public String word;
+	public ArrayList<Definition> definitions;
+	public ArrayList<String> synonyms;
+	public ArrayList<String> antonyms;
 
 	public String getWord() {
 		return word;
 	}
-
-	public List<String> getSynonyms() {
-		return synonyms;
-	}
-
-	public List<String> getAntonyms() {
-		return antonyms;
-	}
-
-	public Definition[] getDefinitions() {
+	
+	public ArrayList<Definition> getDefinitions() {
 		return definitions;
 	}
 
-	@Override
-	public String toString() {
-		return word;
+	public ArrayList<String> getSynonyms() {
+		return synonyms;
+	}
+
+	public ArrayList<String> getAntonyms() {
+		return antonyms;
 	}
 
 }
