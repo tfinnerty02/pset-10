@@ -85,7 +85,7 @@ public class GUIFrame {
 		searchBox = new JTextField("Search...");
 		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
-		
+
 		// adds/removes placeholder when focus gained/lost
 		searchBox.addFocusListener(new FocusAdapter() {
 			@Override
@@ -104,14 +104,18 @@ public class GUIFrame {
 		});
 		frmDictionary.getContentPane().add(searchBox);
 		searchBox.setColumns(10);
-		
+
 		// A to Z radio button
 		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
 		aToZRdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort A to Z
+				DefaultListModel<String> listModel = new DefaultListModel<>();
 				jsonArray = GSONread.returnWords(true);
-				System.out.println(jsonArray);
+				for (int i = 0; i < jsonArray.size(); i++) {
+					listModel.addElement(jsonArray.get(i).toString());
+				}
+				wordList.setModel(listModel);
 			}
 		});
 		aToZRdoBtn.setBounds(6, 70, 141, 23);
@@ -126,15 +130,12 @@ public class GUIFrame {
 		zToARdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort Z to A
-				// might have to make type "Word". This helps with displaying sorted JList
 				DefaultListModel<String> listModel = new DefaultListModel<>();
 				jsonArray = GSONread.returnWords(false);
-				System.out.println(jsonArray);
 				for (int i = 0; i < jsonArray.size(); i++) {
 					listModel.addElement(jsonArray.get(i).toString());
 				}
 				wordList.setModel(listModel);
-				
 			}
 		});
 		zToARdoBtn.setBounds(6, 95, 141, 23);
