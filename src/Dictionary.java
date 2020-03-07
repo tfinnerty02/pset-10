@@ -1,3 +1,4 @@
+
 public class Dictionary {
 
 	// add word to dictionary
