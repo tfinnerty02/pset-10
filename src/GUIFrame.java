@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -8,6 +9,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 import com.google.gson.*;
 import javax.swing.JScrollPane;
@@ -26,8 +29,7 @@ public class GUIFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField wordInfoDisplay;
 
-	@SuppressWarnings("rawtypes")
-	JList wordList;
+	JList<String> wordList;
 	JScrollPane listScroller;
 	@SuppressWarnings("rawtypes")
 	List jsonArray;
@@ -102,7 +104,7 @@ public class GUIFrame {
 		});
 		frmDictionary.getContentPane().add(searchBox);
 		searchBox.setColumns(10);
-
+		
 		// A to Z radio button
 		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
 		aToZRdoBtn.addActionListener(new ActionListener() {
@@ -124,8 +126,15 @@ public class GUIFrame {
 		zToARdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort Z to A
+				// might have to make type "Word". This helps with displaying sorted JList
+				DefaultListModel<String> listModel = new DefaultListModel<>();
 				jsonArray = GSONread.returnWords(false);
 				System.out.println(jsonArray);
+				for (int i = 0; i < jsonArray.size(); i++) {
+					listModel.addElement(jsonArray.get(i).toString());
+				}
+				wordList.setModel(listModel);
+				
 			}
 		});
 		zToARdoBtn.setBounds(6, 95, 141, 23);
@@ -135,10 +144,8 @@ public class GUIFrame {
 		frmDictionary.getContentPane().add(zToARdoBtn);
 
 		jsonArray = GSONread.returnWords(true);
-		System.out.println(jsonArray);
 
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		JList wordList = new JList(jsonArray.toArray());
+		wordList = new JList(jsonArray.toArray());
 		wordList.setBounds(6, 119, 233, 388);
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
 
