@@ -21,6 +21,8 @@ import java.util.Vector;
 
 import com.google.gson.*;
 import javax.swing.JScrollPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUIFrame {
 
@@ -65,13 +67,13 @@ public class GUIFrame {
 		frmDictionary.setTitle("Dictionary");
 		frmDictionary.setBounds(100, 100, 686, 535);
 		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDictionary.getContentPane().setLayout(null);
 
 		// add word button
 		JButton addWordBtn = new JButton("Add Word");
-		addWordBtn.setFocusPainted(false);
 		addWordBtn.setBounds(6, 6, 117, 29);
+		addWordBtn.setFocusPainted(false);
 		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		frmDictionary.getContentPane().setLayout(null);
 		frmDictionary.getContentPane().add(addWordBtn);
 
 		// remove word button
@@ -83,6 +85,19 @@ public class GUIFrame {
 
 		// search box
 		searchBox = new JTextField("Search...");
+		searchBox.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				DefaultListModel<String> filteredItems = new DefaultListModel<>();
+				for (int i = 0; i < jsonArray.size(); i++) {
+					if (jsonArray.get(i).toString().indexOf(searchBox.getText()) != -1) {
+						filteredItems.addElement(jsonArray.get(i).toString());
+					}
+					wordList.setModel(filteredItems);
+				}
+
+			}
+		});
 		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
 
@@ -107,6 +122,7 @@ public class GUIFrame {
 
 		// A to Z radio button
 		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
+		aToZRdoBtn.setBounds(6, 70, 141, 23);
 		aToZRdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort A to Z
@@ -118,7 +134,6 @@ public class GUIFrame {
 				wordList.setModel(listModel);
 			}
 		});
-		aToZRdoBtn.setBounds(6, 70, 141, 23);
 		aToZRdoBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		aToZRdoBtn.setSelected(true);
 		aToZRdoBtn.setFocusPainted(false);
@@ -127,6 +142,7 @@ public class GUIFrame {
 
 		// Z to A radio button
 		JRadioButton zToARdoBtn = new JRadioButton("Z to A");
+		zToARdoBtn.setBounds(6, 95, 141, 23);
 		zToARdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort Z to A
@@ -138,7 +154,6 @@ public class GUIFrame {
 				wordList.setModel(listModel);
 			}
 		});
-		zToARdoBtn.setBounds(6, 95, 141, 23);
 		zToARdoBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		zToARdoBtn.setFocusPainted(false);
 		buttonGroup.add(zToARdoBtn);
@@ -151,8 +166,8 @@ public class GUIFrame {
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
 
 		listScroller = new JScrollPane();
-		listScroller.setViewportView(wordList);
 		listScroller.setBounds(6, 119, 233, 388);
+		listScroller.setViewportView(wordList);
 		wordList.setLayoutOrientation(JList.VERTICAL);
 		frmDictionary.getContentPane().add(listScroller);
 
