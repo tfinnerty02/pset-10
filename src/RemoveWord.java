@@ -57,6 +57,7 @@ public class RemoveWord {
 		frame.getContentPane().add(warning);
 		
 		JTextArea txtrYouAreAbout = new JTextArea();
+		txtrYouAreAbout.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		txtrYouAreAbout.setLineWrap(true);
 		txtrYouAreAbout.setText("You are about to delete the selected word(s). This action cannot be undone.\n\nAre you sure you wish to proceed?");
 		txtrYouAreAbout.setBounds(68, 47, 321, 70);

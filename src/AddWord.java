@@ -6,6 +6,8 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
 public class AddWord {
@@ -56,7 +58,21 @@ public class AddWord {
 		wordLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(wordLabel);
 		
-		wordTextField = new JTextField();
+		wordTextField = new JTextField("Word...");
+		wordTextField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (wordTextField.getText().equals("Word...")) {
+					wordTextField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (wordTextField.getText().equals("")) {
+					wordTextField.setText("Word...");
+				}
+			}
+		});
 		wordTextField.setBounds(6, 23, 130, 26);
 		wordTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(wordTextField);
@@ -67,7 +83,21 @@ public class AddWord {
 		addWordLabel.setFont(new Font("Chalkboard", Font.PLAIN, 32));
 		addWordFrame.getContentPane().add(addWordLabel);
 		
-		posTextField = new JTextField();
+		posTextField = new JTextField("Part of Speech...");
+		posTextField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (posTextField.getText().equals("Part of Speech...")) {
+					posTextField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (posTextField.getText().equals("")) {
+					posTextField.setText("Part of Speech...");
+				}
+			}
+		});
 		posTextField.setBounds(6, 78, 130, 26);
 		posTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		posTextField.setColumns(10);
@@ -78,7 +108,21 @@ public class AddWord {
 		posLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(posLabel);
 		
-		definitionTextField = new JTextField();
+		definitionTextField = new JTextField("Definition...");
+		definitionTextField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (definitionTextField.getText().equals("Definition...")) {
+					definitionTextField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (definitionTextField.getText().equals("")) {
+					definitionTextField.setText("Definition...");
+				}
+			}
+		});
 		definitionTextField.setBounds(6, 133, 283, 26);
 		definitionTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		definitionTextField.setColumns(10);
@@ -89,7 +133,21 @@ public class AddWord {
 		definitionLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(definitionLabel);
 		
-		synonymsTextField = new JTextField();
+		synonymsTextField = new JTextField("Synonyms...");
+		synonymsTextField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (synonymsTextField.getText().equals("Synonyms...")) {
+					synonymsTextField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (synonymsTextField.getText().equals("")) {
+					synonymsTextField.setText("Synonyms...");
+				}
+			}
+		});
 		synonymsTextField.setBounds(6, 188, 130, 26);
 		synonymsTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		synonymsTextField.setColumns(10);
@@ -100,7 +158,21 @@ public class AddWord {
 		synonymsLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(synonymsLabel);
 		
-		antonymsTextField = new JTextField();
+		antonymsTextField = new JTextField("Antonyms...");
+		antonymsTextField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (antonymsTextField.getText().equals("Antonyms...")) {
+					antonymsTextField.setText("");
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (antonymsTextField.getText().equals("")) {
+					antonymsTextField.setText("Antonyms...");
+				}
+			}
+		});
 		antonymsTextField.setBounds(6, 243, 130, 26);
 		antonymsTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		antonymsTextField.setColumns(10);
