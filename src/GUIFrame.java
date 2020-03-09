@@ -63,10 +63,10 @@ public class GUIFrame {
 		frmDictionary.setBounds(100, 100, 686, 535);
 		frmDictionary.setLocationRelativeTo(null);
 		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmDictionary.getContentPane().setLayout(null);
 
 		// add word button
 		JButton addWordBtn = new JButton("Add Word");
+		addWordBtn.setBounds(6, 6, 117, 29);
 		addWordBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -81,13 +81,14 @@ public class GUIFrame {
 				});
 			}
 		});
-		addWordBtn.setBounds(6, 6, 117, 29);
+		frmDictionary.getContentPane().setLayout(null);
 		addWordBtn.setFocusPainted(false);
 		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		frmDictionary.getContentPane().add(addWordBtn);
 
 		// remove word button
 		JButton removeWordBtn = new JButton("Remove Word");
+		removeWordBtn.setBounds(122, 6, 117, 29);
 		removeWordBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -102,13 +103,13 @@ public class GUIFrame {
 				});
 			}
 		});
-		removeWordBtn.setBounds(122, 6, 117, 29);
 		removeWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		removeWordBtn.setFocusPainted(false);
 		frmDictionary.getContentPane().add(removeWordBtn);
 
 		// search box
 		searchBox = new JTextField("Search...");
+		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -121,7 +122,6 @@ public class GUIFrame {
 				}
 			}
 		});
-		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
 
 		// adds/removes placeholder when focus gained/lost

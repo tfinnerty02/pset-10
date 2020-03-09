@@ -58,7 +58,7 @@ public class RemoveWord {
 		
 		JTextArea txtrYouAreAbout = new JTextArea();
 		txtrYouAreAbout.setLineWrap(true);
-		txtrYouAreAbout.setText("You are about to delete a word. This action cannot be undone.\n\nAre you sure you wish to proceed?");
+		txtrYouAreAbout.setText("You are about to delete the selected word(s). This action cannot be undone.\n\nAre you sure you wish to proceed?");
 		txtrYouAreAbout.setBounds(68, 47, 321, 70);
 		txtrYouAreAbout.setBackground(new Color(238, 238, 238));
 		frame.getContentPane().add(txtrYouAreAbout);
