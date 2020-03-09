@@ -88,6 +88,20 @@ public class GUIFrame {
 
 		// remove word button
 		JButton removeWordBtn = new JButton("Remove Word");
+		removeWordBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							RemoveWord window = new RemoveWord();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		removeWordBtn.setBounds(122, 6, 117, 29);
 		removeWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		removeWordBtn.setFocusPainted(false);
