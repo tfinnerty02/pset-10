@@ -113,19 +113,16 @@ public class GUIFrame {
 
 		// search box
 		searchBox = new JTextField("Search...");
-		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				DefaultListModel<String> filteredItems = new DefaultListModel<>();
-				for (int i = 0; i < jsonArray.size(); i++) {
-					if (jsonArray.get(i).toString().indexOf(searchBox.getText()) != -1) {
-						filteredItems.addElement(jsonArray.get(i).toString());
-					}
-					wordList.setModel(filteredItems);
-				}
+				// search
+				
+				
 			}
 		});
+		searchBox.setBounds(6, 34, 233, 38);
+		
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
 
 		// adds/removes placeholder when focus gained/lost

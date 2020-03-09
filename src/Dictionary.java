@@ -174,7 +174,6 @@ class Dictionary {
 			reader.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
@@ -200,7 +199,6 @@ class Dictionary {
 			return synonyms;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -241,7 +239,6 @@ class Dictionary {
 			return synonyms;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
