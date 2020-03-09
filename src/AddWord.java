@@ -12,10 +12,10 @@ public class AddWord {
 
 	public JFrame addWordFrame;
 	private JTextField wordTextField;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField posTextField;
+	private JTextField definitionTextField;
+	private JTextField synonymsTextField;
+	private JTextField antonymsTextField;
 
 	/**
 	 * Launch the application.
@@ -67,44 +67,44 @@ public class AddWord {
 		addWordLabel.setFont(new Font("Chalkboard", Font.PLAIN, 32));
 		addWordFrame.getContentPane().add(addWordLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(6, 78, 130, 26);
-		textField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		textField.setColumns(10);
-		addWordFrame.getContentPane().add(textField);
-		
-		JLabel posTextField = new JLabel("Part of Speech");
-		posTextField.setBounds(6, 61, 113, 16);
+		posTextField = new JTextField();
+		posTextField.setBounds(6, 78, 130, 26);
 		posTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		posTextField.setColumns(10);
 		addWordFrame.getContentPane().add(posTextField);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(6, 133, 283, 26);
-		textField_1.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		addWordFrame.getContentPane().add(textField_1);
+		JLabel posLabel = new JLabel("Part of Speech");
+		posLabel.setBounds(6, 61, 113, 16);
+		posLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		addWordFrame.getContentPane().add(posLabel);
+		
+		definitionTextField = new JTextField();
+		definitionTextField.setBounds(6, 133, 283, 26);
+		definitionTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		definitionTextField.setColumns(10);
+		addWordFrame.getContentPane().add(definitionTextField);
 		
 		JLabel definitionLabel = new JLabel("Definition");
 		definitionLabel.setBounds(6, 116, 61, 16);
 		definitionLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(definitionLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(6, 188, 130, 26);
-		textField_2.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		textField_2.setColumns(10);
-		addWordFrame.getContentPane().add(textField_2);
+		synonymsTextField = new JTextField();
+		synonymsTextField.setBounds(6, 188, 130, 26);
+		synonymsTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		synonymsTextField.setColumns(10);
+		addWordFrame.getContentPane().add(synonymsTextField);
 		
 		JLabel synonymsLabel = new JLabel("Synonyms");
 		synonymsLabel.setBounds(6, 171, 61, 16);
 		synonymsLabel.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(synonymsLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(6, 243, 130, 26);
-		textField_3.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		addWordFrame.getContentPane().add(textField_3);
+		antonymsTextField = new JTextField();
+		antonymsTextField.setBounds(6, 243, 130, 26);
+		antonymsTextField.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		antonymsTextField.setColumns(10);
+		addWordFrame.getContentPane().add(antonymsTextField);
 		
 		JLabel antonymsLabel = new JLabel("Antonyms");
 		antonymsLabel.setBounds(6, 226, 61, 16);
@@ -113,6 +113,7 @@ public class AddWord {
 		
 		JButton closeWindowButton = new JButton("Close Window");
 		closeWindowButton.setBounds(327, 274, 117, 29);
+		closeWindowButton.setFocusPainted(false);
 		closeWindowButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addWordFrame.dispose();
@@ -123,6 +124,7 @@ public class AddWord {
 		
 		JButton addWordButton = new JButton("Add");
 		addWordButton.setBounds(133, 23, 61, 29);
+		addWordButton.setFocusPainted(false);
 		addWordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -130,18 +132,21 @@ public class AddWord {
 		addWordButton.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(addWordButton);
 		
-		JButton synoynmsAddButton = new JButton("Add");
-		synoynmsAddButton.setBounds(133, 188, 61, 29);
-		synoynmsAddButton.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		addWordFrame.getContentPane().add(synoynmsAddButton);
+		JButton synonymsAddButton = new JButton("Add");
+		synonymsAddButton.setBounds(133, 188, 61, 29);
+		synonymsAddButton.setFocusPainted(false);
+		synonymsAddButton.setFont(new Font("Chalkboard", Font.PLAIN, 13));
+		addWordFrame.getContentPane().add(synonymsAddButton);
 		
 		JButton antonymsAddButton = new JButton("Add");
 		antonymsAddButton.setBounds(133, 243, 61, 29);
+		antonymsAddButton.setFocusPainted(false);
 		antonymsAddButton.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(antonymsAddButton);
 		
 		JButton addWordPOSbtn = new JButton("Add Word & P.O.S.");
 		addWordPOSbtn.setBounds(287, 133, 157, 29);
+		addWordPOSbtn.setFocusPainted(false);
 		addWordPOSbtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
 		addWordFrame.getContentPane().add(addWordPOSbtn);
 	}
