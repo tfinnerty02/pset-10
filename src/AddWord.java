@@ -48,7 +48,7 @@ public class AddWord {
 		addWordFrame.setTitle("Add Word");
 		addWordFrame.setBounds(100, 100, 450, 331);
 		addWordFrame.setLocationRelativeTo(null);
-		addWordFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWordFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		addWordFrame.getContentPane().setLayout(null);
 		
 		JLabel wordLabel = new JLabel("Word");
