@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -13,13 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 
-import com.google.gson.*;
 import javax.swing.JScrollPane;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -62,15 +56,31 @@ public class GUIFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize(boolean firstRun) {
 		frmDictionary = new JFrame();
 		frmDictionary.setTitle("Dictionary");
 		frmDictionary.setBounds(100, 100, 686, 535);
+		frmDictionary.setLocationRelativeTo(null);
 		frmDictionary.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDictionary.getContentPane().setLayout(null);
 
 		// add word button
 		JButton addWordBtn = new JButton("Add Word");
+		addWordBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							AddWord window = new AddWord();
+							window.addWordFrame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		addWordBtn.setBounds(6, 6, 117, 29);
 		addWordBtn.setFocusPainted(false);
 		addWordBtn.setFont(new Font("Chalkboard", Font.PLAIN, 13));
