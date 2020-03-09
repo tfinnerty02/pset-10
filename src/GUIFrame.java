@@ -12,23 +12,27 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JScrollPane;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUIFrame {
 
+	public JRadioButton aToZRdoBtn;
 	private JFrame frmDictionary;
 	private JTextField searchBox;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField wordInfoDisplay;
 
 	JList<String> wordList;
 	JScrollPane listScroller;
 	@SuppressWarnings("rawtypes")
 	List jsonArray;
+	String result;
 
 	/**
 	 * Launch the application.
@@ -144,15 +148,15 @@ public class GUIFrame {
 		searchBox.setColumns(10);
 
 		// A to Z radio button
-		JRadioButton aToZRdoBtn = new JRadioButton("A to Z");
+		aToZRdoBtn = new JRadioButton("A to Z");
 		aToZRdoBtn.setBounds(6, 70, 141, 23);
 		aToZRdoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// sort A to Z
 				DefaultListModel<String> listModel = new DefaultListModel<>();
-				jsonArray = GSONread.returnWords(true);
+				ArrayList<Word> jsonArray = GSONread.returnWords(true);
 				for (int i = 0; i < jsonArray.size(); i++) {
-					listModel.addElement(jsonArray.get(i).toString());
+					listModel.addElement(jsonArray.get(i).getName().toString());
 				}
 				wordList.setModel(listModel);
 			}
@@ -170,9 +174,9 @@ public class GUIFrame {
 			public void actionPerformed(ActionEvent e) {
 				// sort Z to A
 				DefaultListModel<String> listModel = new DefaultListModel<>();
-				jsonArray = GSONread.returnWords(false);
+				ArrayList<Word> jsonArray = GSONread.returnWords(false);
 				for (int i = 0; i < jsonArray.size(); i++) {
-					listModel.addElement(jsonArray.get(i).toString());
+					listModel.addElement(jsonArray.get(i).getName().toString());
 				}
 				wordList.setModel(listModel);
 			}
@@ -181,10 +185,32 @@ public class GUIFrame {
 		zToARdoBtn.setFocusPainted(false);
 		buttonGroup.add(zToARdoBtn);
 		frmDictionary.getContentPane().add(zToARdoBtn);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Chalkboard", Font.PLAIN, 16));
+		textPane.setBounds(251, 70, 429, 437);
+		frmDictionary.getContentPane().add(textPane);
 
 		jsonArray = GSONread.returnWords(true);
 
-		wordList = new JList(jsonArray.toArray());
+		wordList = new JList();
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		ArrayList<Word> jsonArray = GSONread.returnWords(true);
+		for (int i = 0; i < jsonArray.size(); i++) {
+			listModel.addElement(jsonArray.get(i).getName().toString());
+		}
+		wordList.setModel(listModel);
+		wordList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int index = wordList.locationToIndex(e.getPoint());
+				result = "Word: " + Dictionary.getNames().get(index);
+				result += "\n" + Dictionary.getFormattedWordDefinitions(index);
+				result += "\n" + Dictionary.getFormattedSyns(index);
+				result += "\n" + Dictionary.getFormattedAnts(index);
+				textPane.setText(result);
+			}
+		});
 		wordList.setBounds(6, 119, 233, 388);
 		wordList.setFont(new Font("Chalkboard", Font.PLAIN, 12));
 
@@ -193,16 +219,6 @@ public class GUIFrame {
 		listScroller.setViewportView(wordList);
 		wordList.setLayoutOrientation(JList.VERTICAL);
 		frmDictionary.getContentPane().add(listScroller);
-
-		wordInfoDisplay = new JTextField();
-		wordInfoDisplay.setBounds(251, 70, 429, 437);
-		wordInfoDisplay.setFont(new Font("Chalkboard", Font.PLAIN, 13));
-		wordInfoDisplay.setText("No word selected.");
-		wordInfoDisplay.setHorizontalAlignment(JTextField.CENTER);
-		wordInfoDisplay.setEditable(false);
-		wordInfoDisplay.setFocusable(false);
-		frmDictionary.getContentPane().add(wordInfoDisplay);
-		wordInfoDisplay.setColumns(10);
 
 		// label at the top of window
 		JLabel lblNewLabel = new JLabel("Dictionary");
