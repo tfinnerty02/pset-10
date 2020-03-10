@@ -113,16 +113,13 @@ public class GUIFrame {
 
 		// search box
 		searchBox = new JTextField("Search...");
+		searchBox.setBounds(6, 34, 233, 38);
 		searchBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// search
-				
 				
 			}
 		});
-		searchBox.setBounds(6, 34, 233, 38);
-		
 		searchBox.setFont(new Font("Chalkboard", Font.PLAIN, 18));
 
 		// adds/removes placeholder when focus gained/lost
@@ -182,7 +179,7 @@ public class GUIFrame {
 		zToARdoBtn.setFocusPainted(false);
 		buttonGroup.add(zToARdoBtn);
 		frmDictionary.getContentPane().add(zToARdoBtn);
-		
+
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("Chalkboard", Font.PLAIN, 16));
 		textPane.setBounds(251, 70, 429, 437);
